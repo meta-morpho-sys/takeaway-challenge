@@ -132,7 +132,7 @@ end
 ```ruby
 # Chicago Style --> arguably an 'integration' or 'feature' test
 describe Order do
-  subject(:order) { described_class.new(Menu.new) } # note real Menu class
+  subject(:order) { described_class.new(Menu.new) } Takeaway
 
   it 'order total to be sum of items added' do
     order.add('Pizza')
