@@ -14,12 +14,21 @@ DISHES
     puts ITEMS
   end
 
-  def order(input)
-    @selected_items = input
+  def order
+
   end
 
+  # prints the selection in a right way
   def show_selection
-    '1 x Burrito  £ 5.60, 1 x Salad    £ 3.80'
+
+  end
+
+  def sum
+
+  end
+
+  def confirm_order
+    # 'Thank you! Your order was placed and will be delivered before 18:52'
   end
 end
 
