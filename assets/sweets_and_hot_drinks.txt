@@ -1,0 +1,4 @@
+Cake, 5.60
+Brownie, 3.80
+Juice, 1.80
+Coffee, 1.90
