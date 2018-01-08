@@ -5,7 +5,7 @@ describe Menu do
   ASSETS_DIR = File.dirname(__FILE__) + '/../assets/'
 
   def load_file(filename)
-    File.readlines(ASSETS_DIR + filename).join
+    File.readlines(ASSETS_DIR + filename).map(&:strip)
   end
 
   it 'prints lists of dishes and prices' do
