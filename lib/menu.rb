@@ -1,14 +1,21 @@
+require 'yaml'
+
 # Displays menus, takes and confirms orders
 class Menu
   ASSETS_DIR = File.dirname(__FILE__) + '/../assets/'
-  attr_reader :name, :items
+  FILE_NAME = ASSETS_DIR + 'menu_example.yaml'.freeze
+  attr_reader :current_menu
 
-  def initialize(name = 1)
-    @name = name
-    @items = []
+  def initialize
+    @loaded_menu = YAML.load(File.open(FILE_NAME))
+    @current_menu = []
   end
 
-  def display_items(filename = ASSETS_DIR + 'sweets_and_hot_drinks.txt')
-    @items = File.readlines(filename).map(&:strip)
+  def display_items(menu_category)
+    puts 'Take a look at our menu 🦀'
+    @loaded_menu[menu_category].each do |dish|
+      dish['name']
+      puts "#{dish['name']} at £#{dish['price']}"
+    end
   end
 end
