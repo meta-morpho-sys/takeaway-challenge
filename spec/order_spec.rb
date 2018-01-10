@@ -8,9 +8,10 @@ describe Order do
       .to eq('name' => 'Ribs', 'price' => 2.50)
   end
 
-
-  xit 'lets you order a quantity of a chosen item' do
-    order.place_order(0, 2)
-    expect(order.basket).to eq ['Cake, 5.60', 'Cake, 5.60']
+  it 'lets you order a quantity of a chosen item' do
+    items_in_basket = { 'name' => 'Ice Cream', 'price' => 1.5 },
+                      { 'name' => 'Ice Cream', 'price' => 1.5 }
+    order.place_order('sweets-menu', 'Ice Cream', 2)
+    expect(order.basket).to eq items_in_basket
   end
 end
