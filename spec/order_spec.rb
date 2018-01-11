@@ -5,13 +5,20 @@ describe Order do
 
   it 'lets you select an item from the menu' do
     expect(order.select_item('barbecue-menu', 'Ribs'))
-      .to eq('name' => 'Ribs', 'price' => 2.50)
+      .to eq(Item.new('Ribs', 2.50))
   end
 
   it 'lets you order a quantity of a chosen item' do
-    items_in_basket = { 'name' => 'Ice Cream', 'price' => 1.5 },
-                      { 'name' => 'Ice Cream', 'price' => 1.5 }
-    order.place_order('sweets-menu', 'Ice Cream', 2)
-    expect(order.basket).to eq items_in_basket
+    item = Item.new('Ice Cream', 1.5)
+    QUANTITY = 2
+    entry = Entry.new(item, QUANTITY)
+    basket = [entry]
+    order.place_order('sweets-menu', 'Ice Cream', QUANTITY)
+    expect(order.basket).to eq basket
   end
+
+
+  # it 'gives the total or the order' do
+  #
+  # end
 end
