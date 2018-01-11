@@ -13,10 +13,14 @@ describe Order do
     QUANTITY = 2
     entry = Entry.new(item, QUANTITY)
     basket = [entry]
-    order.place_order('sweets-menu', 'Ice Cream', QUANTITY)
+    order.add_item('sweets-menu', 'Ice Cream', QUANTITY)
     expect(order.basket).to eq basket
   end
 
+  it 'raises an exception if an item is not found' do
+    expect { order.select_item('drinks-menu', 'Ribs') }
+      .to raise_exception 'Item not found in this menu.'
+  end
 
   # it 'gives the total or the order' do
   #

@@ -23,10 +23,11 @@ class Order
         return item
       end
     end
+    raise 'Item not found in this menu.'
   end
 
   # Returns an Array of entries
-  def place_order(menu_category, item_name, quantity)
+  def add_item(menu_category, item_name, quantity)
     selected_item = select_item(menu_category, item_name)
     entry = Entry.new(selected_item, quantity)
     @basket << entry
