@@ -11,4 +11,4 @@ describe Menu do
     MENU
     expect { menu.display_items('barbecue-menu') }.to output(items).to_stdout
   end
-end
+  end

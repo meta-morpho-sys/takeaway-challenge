@@ -1,0 +1,25 @@
+@startuml
+
+class Menu {
+    +display_menu(menu_category)
+}
+
+class Order {
+    +select_item(menu_category, item_name)
+    +place_order(menu_category, item_name, quantity)
+}
+
+
+class Item {
+    name
+    price
+}
+
+class Entry {
+    quantity
+}
+
+Order <..* Menu :menu
+Order *--> "*" Entry : entries
+Entry *--> Item : item
+@enduml

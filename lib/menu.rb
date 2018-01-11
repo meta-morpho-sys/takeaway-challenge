@@ -7,14 +7,12 @@ class Menu
   attr_reader :current_menu
 
   def initialize
-    @loaded_menu = YAML.load(File.open(FILE_NAME))
-    @current_menu = []
+    @current_menu = YAML.safe_load(File.open(FILE_NAME))
   end
 
   def display_items(menu_category)
     puts 'Take a look at our menu 🦀'
-    @loaded_menu[menu_category].each do |dish|
-      dish['name']
+    @current_menu[menu_category].each do |dish|
       puts "#{dish['name']} at £#{dish['price']}"
     end
   end
