@@ -14,7 +14,6 @@ class Order
   end
 
   # Returns an Item containing the selected item and its price.
-  # TODO : cope with 'Not found!'
   def select_item(menu_category, item_name)
     category = @menu.current_menu[menu_category]
     category.each do |dish|
@@ -26,10 +25,17 @@ class Order
     raise 'Item not found in this menu.'
   end
 
-  # Returns an Array of entries
+  # Returns an array of Entries containing items
+  # with relative  prices and quantities.
   def add_item(menu_category, item_name, quantity)
     selected_item = select_item(menu_category, item_name)
     entry = Entry.new(selected_item, quantity)
     @basket << entry
+  end
+
+  def total
+    @basket.inject(0) do |sum, entry|
+      sum + (entry.item.price * entry.quantity)
+    end
   end
 end
