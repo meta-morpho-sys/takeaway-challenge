@@ -2,3 +2,5 @@
 /coverage
 .idea/
 some_ideas.txt
+test.rb
+feature_spec.rb
