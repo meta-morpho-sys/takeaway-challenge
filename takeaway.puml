@@ -7,6 +7,7 @@ class Menu {
 class Order {
     +select_item(menu_category, item_name)
     +place_order(menu_category, item_name, quantity)
+    +total()
 }
 
 
@@ -19,7 +20,22 @@ class Entry {
     quantity
 }
 
+class Restaurant {
+    display_menus()
+    choose_menu()
+    order(class_order)
+    check_out()
+    send_message(phone_number)
+}
+
+class Messenger {
+    handles_Twilio
+}
+
 Order <..* Menu :menu
 Order *--> "*" Entry : entries
 Entry *--> Item : item
+Restaurant *--> Messenger : messenger
+Restaurant *--> Order : orders
+Restaurant *--> Menu :menus
 @enduml

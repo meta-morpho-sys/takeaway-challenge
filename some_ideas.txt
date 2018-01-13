@@ -1,0 +1,37 @@
+  # # prints the selection in a right way
+  # def show_selection; end
+  #
+  # def sum; end
+  #
+  # def confirm_order
+  #   # 'Thank you! Your order was placed and will be delivered before 18:52'
+  # end
+
+  # Take a look at our menu 🦀
+
+  # in Rspec    #
+    # it 'gives a list of dishes with totals' do
+    #   menu.order # ('1, 1, 2', 15.00)
+    #   selection = <<-DISHES
+    #   3 x Ribs    £ 5.60
+    #   1 x Salad   £ 3.80
+    #   Total       £ 15.00
+    #   DISHES
+    #   expect { menu.show_selection }.to output(selection).to_stdout
+    # end
+    #
+    # it 'adds up selected items and returns that number' do
+    #   menu.order('1, 1, 2', 15.00)
+    #   expect(menu.sum).to eq(15.00)
+    # end
+    #
+    # it "raises error if the total differs from the customer's" do
+    #   menu.order('1, 1, 2', 17.00)
+    #   expect { menu.sum }.to raise_error 'Sorry! Incorrect sum.'
+    # end
+    #
+    # it 'sends a text message to confirm the order' do
+    #   menu.order('1, 1, 2', 15.00)
+    #   message = 'Thanks! Your order was placed and will be delivered before 18:52'
+    #   expect(menu.confirm_order).to eq message
+    # end

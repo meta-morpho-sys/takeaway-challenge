@@ -10,9 +10,10 @@ class Menu
     @current_menu = YAML.safe_load(File.open(FILE_NAME))
   end
 
-  def display_items(menu_category)
-    puts 'Take a look at our menu 🦀'
-    @current_menu[menu_category].each do |dish|
+  # TODO: Find a better solution to the underscore of the variable.
+  # The underscore serves for the purposes of Restaurant#display_menus
+  def display_items(_menu_category)
+    @current_menu[_menu_category].each do |dish|
       puts "#{dish['name']} at £#{dish['price']}"
     end
   end
