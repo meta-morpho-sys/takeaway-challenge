@@ -1,15 +1,14 @@
-Restaurant: The Enchanted traveller
-barbecue-menu:
+barbecue:
     - name: Ribs
       price: 2.50
     - name: Salad
       price: 5.00
-sweets-menu:
+sweets:
     - name: Ice Cream
       price: 1.50
     - name: Treacle pudding
       price: 15.00
-drinks-menu:
+drinks:
     - name: Coffee
       price: 1.90
     - name: Apple Juice
