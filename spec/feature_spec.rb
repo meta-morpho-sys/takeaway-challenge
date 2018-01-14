@@ -2,7 +2,7 @@ require 'restaurant'
 require 'order'
 
 describe 'Using the app' do
-  let(:fat_duck) { Restaurant.new }
+  let(:fat_duck) { Restaurant.new(Order.new) }
   let(:order) { Order.new }
 
   xit 'lets you choose a menu' do

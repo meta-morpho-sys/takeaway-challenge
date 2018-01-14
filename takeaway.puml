@@ -10,7 +10,6 @@ class Order {
     +total()
 }
 
-
 class Item {
     name
     price
@@ -20,22 +19,17 @@ class Entry {
     quantity
 }
 
-class Restaurant {
-    display_menus()
-    choose_menu()
-    order(class_order)
-    check_out()
-    send_message(phone_number)
-}
-
 class Messenger {
     handles_Twilio
 }
 
-Order <..* Menu :menu
+interface Messenger {
+    send_message(message)
+}
+
+Order *..> Menu :menu
 Order *--> "*" Entry : entries
 Entry *--> Item : item
-Restaurant *--> Messenger : messenger
-Restaurant *--> Order : orders
-Restaurant *--> Menu :menus
+Order *--> Messenger
+
 @enduml

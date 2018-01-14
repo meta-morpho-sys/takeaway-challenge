@@ -20,6 +20,7 @@ describe Order do
     basket = [entry]
     order.add_item('sweets', 'Ice Cream', QUANTITY)
     expect(order.basket).to eq basket
+    p basket
   end
 
   it 'gives the total of one entry' do
@@ -31,5 +32,11 @@ describe Order do
     order.add_item('drinks', 'Apple Juice', 2)
     order.add_item('barbecue', 'Ribs', 2)
     expect(order.total).to eq 9.60
+  end
+
+  # Stubbing Twilio
+  it 'sends a payment confirmation text message' do
+    expect(order).to receive(:send_text).with('Thank you for your order: £9.95')
+    order.complete_order(9.95)
   end
 end

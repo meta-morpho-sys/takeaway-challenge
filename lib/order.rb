@@ -1,4 +1,6 @@
 require_relative 'menu'
+require_relative 'messenger'
+require 'twilio-ruby'
 
 # Defining helper classes which then will be instantiated where necessary.
 # Such classes are perfect for storing data.
@@ -8,7 +10,8 @@ Entry = Struct.new(:item, :quantity)
 # Order class stores a collection of items
 class Order
   attr_reader :basket
-  def initialize
+  def initialize(messenger = TwilioMessenger.new)
+    @messenger = messenger
     @menu = Menu.new
     @basket = []
   end
@@ -37,5 +40,13 @@ class Order
     @basket.inject(0) do |sum, entry|
       sum + (entry.item.price * entry.quantity)
     end
+  end
+
+  def complete_order(total_price)
+    send_text("Thank you for your order: £#{total_price}")
+  end
+
+  def send_text(message)
+    @messenger.send_message(message)
   end
 end
