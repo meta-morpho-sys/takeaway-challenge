@@ -1,12 +1,15 @@
 require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
+require 'timecop'
 
 SCF = SimpleCov::Formatter
 formatters = [SCF::Console, SCF::HTMLFormatter]
 SimpleCov.formatter = SCF::MultiFormatter.new(formatters)
 
 SimpleCov.start
+
+Timecop.return
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

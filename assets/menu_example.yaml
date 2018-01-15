@@ -7,7 +7,7 @@ sweets:
     - name: Ice Cream
       price: 1.50
     - name: Treacle pudding
-      price: 15.00
+      price: 5.00
 drinks:
     - name: Coffee
       price: 1.90
