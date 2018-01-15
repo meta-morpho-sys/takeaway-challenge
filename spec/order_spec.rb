@@ -11,7 +11,7 @@ describe Order do
 
   it 'raises an exception if an item is not found' do
     expect { order.select_item('drinks', 'Ribs') }
-      .to raise_exception 'Item not found in this menu.'
+      .to raise_error 'Item not found on this menu.'
   end
 
   it 'lets you order a quantity of a chosen item' do
@@ -21,7 +21,6 @@ describe Order do
     basket = [entry]
     order.add_item('sweets', 'Ice Cream', QUANTITY)
     expect(order.basket).to eq basket
-    p basket
   end
 
   it 'gives the total of one entry' do
@@ -46,7 +45,7 @@ describe Order do
   it 'sends a payment confirmation text message' do
     frozen_time = Timecop.freeze(Time.now)
     message = 'Thank you! Your order : £5.00 was placed and will be'\
-    " delivered before #{(frozen_time + 3600).strftime('%H:%M')}."
+    " delivered before #{(frozen_time + 3600).strftime('%R')}."
 
     order.add_item('barbecue', 'Ribs', 2)
     expect(order).to receive(:send_text).with(message)

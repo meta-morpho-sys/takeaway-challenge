@@ -1,5 +1,6 @@
 require_relative 'menu'
 require_relative 'messenger'
+require_relative 'text_handler'
 require 'twilio-ruby'
 require 'money'
 
@@ -8,11 +9,14 @@ require 'money'
 Item = Struct.new(:name, :price)
 Entry = Struct.new(:item, :quantity)
 
+I18n.available_locales = [:en]
+
 # Order class stores a collection of items
 class Order
   attr_reader :basket
-  def initialize(messenger = TwilioMessenger.new)
+  def initialize(messenger = TwilioMessenger.new, text_handler = TextHandler.new)
     @messenger = messenger
+    @text_handler = text_handler
     @menu = Menu.new
     @basket = []
   end
@@ -30,13 +34,12 @@ class Order
   end
 
   # Returns an array of Entries containing items
-  # with relative  prices and quantities.
+  # with relative prices and quantities.
   def add_item(menu_category, item_name, quantity)
     selected_item = select_item(menu_category, item_name)
     entry = Entry.new(selected_item, quantity)
     @basket << entry
-    p "#{entry.quantity} x #{entry.item.name}/s added to your basket"\
-    " at #{entry.item.price} each"
+    @text_handler.print_confirmation_message(entry)
   end
 
   def total
@@ -48,9 +51,10 @@ class Order
   def checkout(total_price)
     raise 'incorrect price' unless correct_amount?(total_price)
     time = Time.new
-    delivery_time = (time + 3600).strftime('%H:%M')
-    send_text("Thank you! Your order : £#{total_price} was placed and will be"\
-    " delivered before #{delivery_time}.")
+    delivery_time = (time + 3600).strftime('%R')
+    message = "Thank you! Your order : £#{total_price} was placed and will be"\
+    " delivered before #{delivery_time}."
+    send_text(message)
   end
 
   private
